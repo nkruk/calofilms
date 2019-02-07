@@ -1,7 +1,7 @@
 ## CaloFilms
 
 Small React.js portfolio project.    
-Libraries used so far: react-material-ui, axios, redux, redux-thunk.  
+Libraries used so far: react-material-ui (core and icons), axios, redux, redux-thunk, react-router-dom.  
 Firebase as backend.
 
 This site features films recommended by Santiago Calori (@sancalori).  
