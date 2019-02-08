@@ -31,7 +31,7 @@ class NavBar extends Component {
 
         this.props.films.map((film) => {
             const filmString = Array(2);
-            filmString[0] = `${film.title} ${film.yearOfRelease} ${film.director} ${film.country} ${film.runningTime} ${film.comment}`;
+            filmString[0] = `${film.title} ${film.yearOfRelease} ${film.director} ${film.country} ${film.runningTime} ${film.comment} ${film.tags}`;
             filmString[1] = film.title;
             return filmString;
             })
