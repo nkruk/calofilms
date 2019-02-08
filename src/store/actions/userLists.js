@@ -96,12 +96,13 @@ export const removeFromUserQueueStart = () => {
     };
 };
 
-export const removeFromUserQueue = ( removeFromQueueId, film, token ) => {
+export const removeFromUserQueue = ( removeFromQueueId, film, token, userId ) => {
     return dispatch => {
         dispatch( removeFromUserQueueStart() );
         axios.delete( `https://calofilms.firebaseio.com/user-lists/${removeFromQueueId}.json?auth=${token}` )
             .then( response => {
                 dispatch( removeFromUserQueueSuccess( film ) );
+                dispatch(fetchUsersQueue(token, userId));
             } )
             .catch( error => {
                 dispatch( removeFromUserQueueFail( error ) );

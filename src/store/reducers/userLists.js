@@ -57,7 +57,7 @@ const removeFromUserQueueFail = (state, action) => {
 const removeFromUserQueueSuccess = (state, action) => {
     const newFilmsInUsersQueue = [...state.filmsInUsersQueue];
     newFilmsInUsersQueue.splice(newFilmsInUsersQueue.indexOf(action.film), 1)
-    
+
     return updateObject( state, {
         loading: false,
         filmsInUsersQueue: newFilmsInUsersQueue

@@ -29,7 +29,7 @@ class FilmList extends Component {
 
     removeFromQueueHandler(event, filmTitle) {
         const docIdToRemove = this.props.filmsInUsersQueue.find(element => element.film === filmTitle).docID;
-        this.props.dispatchRemoveFromUserQueue(docIdToRemove, filmTitle, this.props.token );
+        this.props.dispatchRemoveFromUserQueue(docIdToRemove, filmTitle, this.props.token, this.props.userId );
     }
 
 
@@ -86,7 +86,7 @@ const mapDispatchToProps = dispatch => {
         onMountFetchFilms: () => dispatch(actions.fetchFilms()),
         onMountFetchFilmsInUsersQueue: (token, userId) => dispatch(actions.fetchUsersQueue(token, userId)),
         dispatchAddToUserQueue: (addToQueueData, token) => dispatch(actions.addToUserQueue(addToQueueData, token)),
-        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token)),
+        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId)),
 
     }
 }
