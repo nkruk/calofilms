@@ -23,7 +23,8 @@ import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
 class NavBar extends Component {
 
     state = {
-        searchString: ''    }
+        searchString: ''
+    }
 
     filteredTitles(searchString) {
         const filteredArray = []
@@ -107,7 +108,7 @@ class NavBar extends Component {
             </>)
         } else if (this.props.isAuthenticated 
                     && this.props.onlyShowQueue
-                    && this.props.history.location.pathname !== '/path' ){
+                     ){
             return (
                 <>
                 <Grid item>
@@ -134,7 +135,7 @@ class NavBar extends Component {
                         alignItems="center">
                     <Grid item>
                 
-                    {this.props.displayed && !this.props.onlyShowQueue ? 
+                    {this.props.displayed && !this.props.onlyShowQueue && !this.props.inAuth ? 
                     <>
                     
                     {/* <Tooltip title="Filtrar la filmoteca entera por palabras claves: director, año de lanzamiento, país y palabras incluidas en el comentario.">
@@ -169,7 +170,8 @@ const mapStateToProps = state => {
         films: [...state.films.films],
         displayed: state.films.displayed,
         isAuthenticated: state.auth.token !== null,
-        onlyShowQueue: state.userLists.onlyShowQueue
+        onlyShowQueue: state.userLists.onlyShowQueue,
+        inAuth: state.auth.inAuth
     };
   };
 

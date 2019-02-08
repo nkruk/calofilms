@@ -7,10 +7,11 @@ export {
     logout,
     setAuthRedirectPath,
     authCheckState,
+    toggleInAuth
 } from './auth';
 export {
     addToUserQueue,
     fetchUsersQueue,
     removeFromUserQueue,
-    toggleOnlyShowQueue
+    toggleOnlyShowQueue,
 } from './userLists';

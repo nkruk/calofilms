@@ -92,3 +92,10 @@ export const authCheckState = () => {
         }
     };
 };
+
+export const toggleInAuth = (boolean) => {
+    return {
+        type: actionTypes.TOGGLE_IN_AUTH,
+        newBoolean: boolean
+    };
+};

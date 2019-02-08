@@ -49,6 +49,7 @@ class Auth extends Component {
         if ( this.props.authRedirectPath !== '/' ) {
             this.props.onSetAuthRedirectPath();
         }
+        this.props.toggleInAuth(true);
     } 
 
     inputChangedHandler = ( event, controlName ) => {
@@ -132,14 +133,15 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         error: state.auth.error,
         isAuthenticated: state.auth.token !== null,
-        authRedirectPath: state.auth.authRedirectPath
+        authRedirectPath: state.auth.authRedirectPath,
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
         onAuth: ( email, password, isSignup ) => dispatch( actions.auth( email, password, isSignup ) ),
-        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) )
+        onSetAuthRedirectPath: () => dispatch( actions.setAuthRedirectPath( '/' ) ),
+        toggleInAuth: (boolean) => dispatch(actions.toggleInAuth(boolean))
     };
 };
 

@@ -11,11 +11,13 @@ class FilmList extends Component {
 
     componentDidMount() {
         this.props.onMountFetchFilms();
+        this.props.toggleInAuth(false);
         setTimeout( () => { 
             if (this.props.isAuthenticated) {
                 this.props.onMountFetchFilmsInUsersQueue(this.props.token, this.props.userId);
                 }
         }, 0);
+        
         
     }
 
@@ -101,7 +103,8 @@ const mapStateToProps = state => {
         userId: state.auth.userId,
         token: state.auth.token,
         filmsInUsersQueue: state.userLists.filmsInUsersQueue,
-        onlyShowQueue: state.userLists.onlyShowQueue
+        onlyShowQueue: state.userLists.onlyShowQueue,
+        inAuth: state.auth.inAuth
     };
 };
 
@@ -110,7 +113,8 @@ const mapDispatchToProps = dispatch => {
         onMountFetchFilms: () => dispatch(actions.fetchFilms()),
         onMountFetchFilmsInUsersQueue: (token, userId) => dispatch(actions.fetchUsersQueue(token, userId)),
         dispatchAddToUserQueue: (addToQueueData, token) => dispatch(actions.addToUserQueue(addToQueueData, token)),
-        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId))
+        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId)),
+        toggleInAuth: (boolean) => dispatch(actions.toggleInAuth(boolean))
 
     }
 }
