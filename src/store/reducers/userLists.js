@@ -12,12 +12,13 @@ const addToUserQueueStart = ( state, action ) => {
 
 
 const addToUserQueueSuccess = ( state, action ) => {
-    const newfilmsInUsersQueue = [...state.filmsInUsersQueue];
-    newfilmsInUsersQueue.push(action.addToQueueData.film)
+    const newFilmsInUsersQueue = [...state.filmsInUsersQueue];
+    newFilmsInUsersQueue.push(action.addToQueueData.film)
+    console.log(newFilmsInUsersQueue)
     
     return updateObject( state, {
         loading: false,
-        filmsInUsersQueue: newfilmsInUsersQueue
+        filmsInUsersQueue: newFilmsInUsersQueue
     } );
 };
 

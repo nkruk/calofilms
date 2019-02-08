@@ -26,8 +26,6 @@ export const addToUserQueue = ( addToQueueData, token ) => {
         dispatch( addToUserQueueStart() );
         axios.post( 'https://calofilms.firebaseio.com/user-lists.json?auth=' + token, addToQueueData )
             .then( response => {
-                console.log(addToQueueData);
-                console.log(response.data);
                 dispatch( addToUserQueueSuccess( addToQueueData ) );
                 dispatch( fetchUsersQueue(token, addToQueueData.userId));
             } )
