@@ -10,9 +10,12 @@ class FilmList extends Component {
 
     componentDidMount() {
         this.props.onMountFetchFilms();
-        if (this.props.isAuthenticated) {
-        this.props.onMountFetchFilmsInUsersQueue(this.props.token, this.props.userId);
-        }
+        setTimeout( () => { 
+            if (this.props.isAuthenticated) {
+                this.props.onMountFetchFilmsInUsersQueue(this.props.token, this.props.userId);
+                }
+        }, 0);
+        
     }
 
     addToQueueHandler(event, filmTitle) {
@@ -33,8 +36,6 @@ class FilmList extends Component {
 
 
     render() {
-
-        console.log(this.props.filmsInUsersQueue);
 
         const displayedFilms = this.props.filteredFilms.map( (currentFilm, index) => (
             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>

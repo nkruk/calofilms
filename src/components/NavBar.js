@@ -17,10 +17,6 @@ class NavBar extends Component {
         searchString: '',
     }
 
-    componentDidMount() {
-        this.props.onMountAutoSignup();
-    }
-
     filteredTitles(searchString) {
         const filteredArray = []
 
@@ -119,7 +115,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         updateDisplayedFilms: (filteredArrayOfFilms) => dispatch(actions.updateFilms(filteredArrayOfFilms)),
-        onMountAutoSignup: () => dispatch( actions.authCheckState() ),
     }
 }
 

@@ -35,8 +35,6 @@ export const addToUserQueue = ( addToQueueData, token ) => {
 };
 
 
-
-
 export const fetchUserQueueSuccess = ( userQueue ) => {
     return {
         type: actionTypes.FETCH_USER_QUEUE_SUCCESS,
@@ -101,6 +99,7 @@ export const removeFromUserQueue = ( removeFromQueueData, token ) => {
         dispatch( removeFromUserQueueStart() );
         axios.post( `https://calofilms.firebaseio.com/user-lists.json?auth=${token}&orderBy="userId"&equalTo="${removeFromQueueData.userId}"` )
             .then( response => {
+                console.log(response);
                 dispatch( removeFromUserQueueSuccess( removeFromQueueData ) );
             } )
             .catch( error => {

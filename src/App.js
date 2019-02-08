@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 
@@ -12,6 +12,10 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
 
+  state = {
+    freshReload: false
+  }
+
   componentDidMount() {
     this.props.onMountAutoSignup();
   }
@@ -21,15 +25,13 @@ class App extends Component {
       <>
           <NavBar />
 
-        
           <Switch>
             <Route path="/" exact component={FilmList} />
             <Route path="/auth" exact component={Auth} />
             <Route path="/logout" exact component={Logout} />
             <Redirect to="/" />
           </Switch>
-           
-          
+
       </>
     );
   }
@@ -47,4 +49,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));
