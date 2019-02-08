@@ -31,6 +31,7 @@ const fetchUserQueueStart = ( state, action ) => {
 };
 
 const fetchUserQueueSuccess = ( state, action ) => {
+    console.log(action.userQueue);
     return updateObject( state, {
         filmsInUsersQueue: action.userQueue,
         loading: false
@@ -41,6 +42,28 @@ const fetchUserQueueFail = ( state, action ) => {
     return updateObject( state, { loading: false } );
 };
 
+
+const removeFromUserQueueStart = (state, action) => {
+    return updateObject( state, { loading: true } );
+};
+
+const removeFromUserQueueFail = (state, action) => {
+    return updateObject( state, { loading: false } );
+};
+
+
+const removeFromUserQueueSuccess = (state, action) => {
+    const newFilmsInUsersQueue = [...state.filmsInUsersQueue];
+    newFilmsInUsersQueue.splice(newFilmsInUsersQueue.indexOf(action.film), 1)
+    console.log(newFilmsInUsersQueue)
+    
+    return updateObject( state, {
+        loading: false,
+        filmsInUsersQueue: newFilmsInUsersQueue
+    } );
+};
+
+
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
         case actionTypes.ADD_TO_USER_QUEUE_START: return addToUserQueueStart( state, action );
@@ -49,6 +72,9 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.FETCH_USER_QUEUE_START: return fetchUserQueueStart( state, action );
         case actionTypes.FETCH_USER_QUEUE_SUCCESS: return fetchUserQueueSuccess( state, action );
         case actionTypes.FETCH_USER_QUEUE_FAIL: return fetchUserQueueFail( state, action ); 
+        case actionTypes.REMOVE_FROM_USER_QUEUE_START: return removeFromUserQueueStart( state, action );
+        case actionTypes.REMOVE_FROM_USER_QUEUE_SUCCESS: return removeFromUserQueueSuccess( state, action )
+        case actionTypes.REMOVE_FROM_USER_QUEUE_FAIL: return removeFromUserQueueFail( state, action );
         default: return state;
     }
 };

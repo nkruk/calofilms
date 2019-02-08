@@ -26,7 +26,10 @@ export const addToUserQueue = ( addToQueueData, token ) => {
         dispatch( addToUserQueueStart() );
         axios.post( 'https://calofilms.firebaseio.com/user-lists.json?auth=' + token, addToQueueData )
             .then( response => {
+                console.log(addToQueueData);
+                console.log(response.data);
                 dispatch( addToUserQueueSuccess( addToQueueData ) );
+                dispatch( fetchUsersQueue(token, addToQueueData.userId));
             } )
             .catch( error => {
                 dispatch( addToUserQueueFail( error ) );
@@ -61,10 +64,11 @@ export const fetchUsersQueue = (token, userId) => {
         const url = `https://calofilms.firebaseio.com/user-lists.json?auth=${token}&orderBy="userId"&equalTo="${userId}"`;
         axios.get(url)
             .then( res => {
-                const fetchedUserQueue = Object.values(res.data).map((element) => {
-                    return element.film
-                })
-                console.log(fetchedUserQueue);
+                var fetchedUserQueue = Object.keys(res.data).map(function (key) {
+                    return { 
+                        docID: key,
+                        film: res.data[key].film };
+                 });
                 dispatch(fetchUserQueueSuccess(fetchedUserQueue));
             } )
             .catch( err => {
@@ -94,13 +98,12 @@ export const removeFromUserQueueStart = () => {
     };
 };
 
-export const removeFromUserQueue = ( removeFromQueueData, token ) => {
+export const removeFromUserQueue = ( removeFromQueueId, film, token ) => {
     return dispatch => {
         dispatch( removeFromUserQueueStart() );
-        axios.post( `https://calofilms.firebaseio.com/user-lists.json?auth=${token}&orderBy="userId"&equalTo="${removeFromQueueData.userId}"` )
+        axios.delete( `https://calofilms.firebaseio.com/user-lists/${removeFromQueueId}.json?auth=${token}` )
             .then( response => {
-                console.log(response);
-                dispatch( removeFromUserQueueSuccess( removeFromQueueData ) );
+                dispatch( removeFromUserQueueSuccess( film ) );
             } )
             .catch( error => {
                 dispatch( removeFromUserQueueFail( error ) );

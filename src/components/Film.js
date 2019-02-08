@@ -48,7 +48,7 @@ const Film = (props) => {
 {
                             props.isAuth && props.isInUsersQueue ?
                             (
-                                <IconButton aria-label="Añadir a favoritos" onClick={props.addToQueue}>
+                                <IconButton aria-label="Añadir a favoritos" onClick={props.removeFromQueue}>
                                     <RemoveFromQueue />
                                 </IconButton>
                             ) : null

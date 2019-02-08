@@ -8,6 +8,7 @@ import Spinner from './UI/Spinner/Spinner';
 
 class FilmList extends Component {
 
+
     componentDidMount() {
         this.props.onMountFetchFilms();
         setTimeout( () => { 
@@ -27,27 +28,31 @@ class FilmList extends Component {
     }
 
     removeFromQueueHandler(event, filmTitle) {
-        const userIdAndFilmTitle = {
-            userId: this.props.userId,
-            film: filmTitle
-        };
-        this.props.dispatchRemoveFromUserQueue(userIdAndFilmTitle, this.props.token );
+        const docIdToRemove = this.props.filmsInUsersQueue.find(element => element.film === filmTitle).docID;
+        this.props.dispatchRemoveFromUserQueue(docIdToRemove, filmTitle, this.props.token );
     }
 
 
     render() {
 
-        const displayedFilms = this.props.filteredFilms.map( (currentFilm, index) => (
+        const displayedFilms = this.props.filteredFilms.map( (currentFilm, index) => {
+
+            return (
             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
                 <Film film={currentFilm} 
                 isAuth={this.props.isAuthenticated} 
-                isInUsersQueue={this.props.filmsInUsersQueue.includes(currentFilm.title)}
+                // isInUsersQueue={titlesQueue.includes(currentFilm.title)} 
+                isInUsersQueue={this.props.filmsInUsersQueue
+                                        .filter((element) => element.film === currentFilm.title)
+                                        .length > 0 ? true : false} 
                 addToQueue={(event) => this.addToQueueHandler (event, currentFilm.title)}
                 removeFromQueue={(event) => this.removeFromQueueHandler (event, currentFilm.title)} />
             </Grid>
-        ))
+        )
+                    })
 
         return (
+            
             <>
                 {
                 this.props.loading ? 
@@ -81,7 +86,7 @@ const mapDispatchToProps = dispatch => {
         onMountFetchFilms: () => dispatch(actions.fetchFilms()),
         onMountFetchFilmsInUsersQueue: (token, userId) => dispatch(actions.fetchUsersQueue(token, userId)),
         dispatchAddToUserQueue: (addToQueueData, token) => dispatch(actions.addToUserQueue(addToQueueData, token)),
-        dispatchRemoveFromUserQueue: (removeFromQueueData, token) => dispatch(actions.removeFromUserQueue(removeFromQueueData, token)),
+        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token)),
 
     }
 }
