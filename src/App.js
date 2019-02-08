@@ -21,16 +21,14 @@ class App extends Component {
       <>
           <NavBar />
 
-          {
-             this.props.isAuthenticated ? (
+        
           <Switch>
             <Route path="/" exact component={FilmList} />
             <Route path="/auth" exact component={Auth} />
             <Route path="/logout" exact component={Logout} />
             <Redirect to="/" />
           </Switch>
-            )
-          :null} 
+           
           
       </>
     );
