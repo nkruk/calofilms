@@ -1,10 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from 'axios';
 
-export const addToUserQueueSuccess = ( addToQueueData ) => {
+export const addToUserQueueSuccess = ( addToQueueData, docId ) => {
     return {
         type: actionTypes.ADD_TO_USER_QUEUE_SUCCESS,
-        addToQueueData: addToQueueData
+        addToQueueData: addToQueueData,
+        docId: docId
     };
 };
 
@@ -26,8 +27,7 @@ export const addToUserQueue = ( addToQueueData, token ) => {
         dispatch( addToUserQueueStart() );
         axios.post( 'https://calofilms.firebaseio.com/user-lists.json?auth=' + token, addToQueueData )
             .then( response => {
-                dispatch( addToUserQueueSuccess( addToQueueData ) );
-                dispatch( fetchUsersQueue(token, addToQueueData.userId));
+                dispatch( addToUserQueueSuccess( addToQueueData, response.data.name ) );
             } )
             .catch( error => {
                 dispatch( addToUserQueueFail( error ) );

@@ -13,8 +13,10 @@ const addToUserQueueStart = ( state, action ) => {
 
 const addToUserQueueSuccess = ( state, action ) => {
     const newFilmsInUsersQueue = [...state.filmsInUsersQueue];
-    newFilmsInUsersQueue.push(action.addToQueueData.film)
-    console.log(newFilmsInUsersQueue)
+    newFilmsInUsersQueue.push({
+        docID: action.docId,
+        film: action.addToQueueData.film
+    })
     
     return updateObject( state, {
         loading: false,
@@ -32,7 +34,6 @@ const fetchUserQueueStart = ( state, action ) => {
 };
 
 const fetchUserQueueSuccess = ( state, action ) => {
-    console.log(action.userQueue);
     return updateObject( state, {
         filmsInUsersQueue: action.userQueue,
         loading: false
@@ -56,7 +57,6 @@ const removeFromUserQueueFail = (state, action) => {
 const removeFromUserQueueSuccess = (state, action) => {
     const newFilmsInUsersQueue = [...state.filmsInUsersQueue];
     newFilmsInUsersQueue.splice(newFilmsInUsersQueue.indexOf(action.film), 1)
-    console.log(newFilmsInUsersQueue)
     
     return updateObject( state, {
         loading: false,
