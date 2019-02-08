@@ -18,6 +18,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.onMountAutoSignup();
+    console.log(this.props);
   }
 
   render() {

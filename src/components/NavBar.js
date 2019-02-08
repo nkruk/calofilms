@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, withRouter } from 'react-router-dom';
 
 
 import * as actions from '../store/actions/index';
@@ -105,12 +105,14 @@ class NavBar extends Component {
                     {closeSession()}
             </Grid>
             </>)
-        } else if (this.props.isAuthenticated && this.props.onlyShowQueue){
+        } else if (this.props.isAuthenticated 
+                    && this.props.onlyShowQueue
+                    && this.props.history.location.pathname !== '/path' ){
             return (
                 <>
                 <Grid item>
                     <NavLink to="/">
-                    <Tooltip title="Mostrando solo las películas en tu lista.">
+                    <Tooltip title="Volver a mostrar todas las películas.">
                         <IconButton aria-label="Mi lista" onClick={this.showOnlyQueueClickHandler}>
                             <PlaylistAddCheck style={{color:'white'}}/>
                         </IconButton>
@@ -178,4 +180,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar));
