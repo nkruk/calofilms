@@ -11,7 +11,7 @@ This site features films recommended by Santiago Calori (@sancalori).
 * ~~Authentication.~~ (Implemented)
 * ~~Wishlist functionality: When logged in toggle "add_to_queue" and "remove_from_queue" buttons. Add queued films to user list.~~ (Implemented)
 * ~~Add icon in toolbar to display only films in users' queue.~~ (Implemented)
-* ~~Remove search bar from auth route.~~ (Implemented)
+* Remove search bar from auth route.
 * Redo signup/login form with material-ui components.
 * Move icons on card to the right of the flex item.
 * Add footer with github link and credits.
