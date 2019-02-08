@@ -35,8 +35,10 @@ class FilmList extends Component {
 
     render() {
 
-        const displayedFilms = this.props.filteredFilms.map( (currentFilm, index) => {
-
+        let displayedFilms;
+        if (!this.props.onlyShowQueue) {
+        displayedFilms = this.props.filteredFilms        
+        .map( (currentFilm, index) => {
             return (
             <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
                 <Film film={currentFilm} 
@@ -48,8 +50,29 @@ class FilmList extends Component {
                 addToQueue={(event) => this.addToQueueHandler (event, currentFilm.title)}
                 removeFromQueue={(event) => this.removeFromQueueHandler (event, currentFilm.title)} />
             </Grid>
-        )
-                    })
+        )})
+        } else {
+            const titlesArray = this.props.filmsInUsersQueue.reduce((array, element) => { 
+                array.push(element.film)
+                return array;
+            }, []);
+
+            displayedFilms = this.props.films.filter((element) => {
+                return titlesArray.includes(element.title)
+                })
+                .map((currentFilm, index) => {
+                return (
+                    <Grid key={index} item xs={12} sm={6} lg={4} xl={3}>
+                        <Film film={currentFilm}
+                        isAuth={this.props.isAuthenticated} 
+                        // isInUsersQueue={titlesQueue.includes(currentFilm.title)} 
+                        isInUsersQueue={true} 
+                        addToQueue={(event) => this.addToQueueHandler (event, currentFilm.title)}
+                        removeFromQueue={(event) => this.removeFromQueueHandler (event, currentFilm.title)} />
+                </Grid>
+                )
+            }) 
+        }
 
         return (
             
@@ -59,7 +82,7 @@ class FilmList extends Component {
                     <Spinner /> : 
                         (
                             <Grid container spacing={24} 
-                            style={{padding: 24, marginTop: '80px'}}>
+                            style={{padding: 24, marginTop: '45px'}}>
                                 {displayedFilms}
                             </Grid>
                         )
@@ -77,7 +100,8 @@ const mapStateToProps = state => {
         isAuthenticated: state.auth.token !== null,
         userId: state.auth.userId,
         token: state.auth.token,
-        filmsInUsersQueue: state.userLists.filmsInUsersQueue
+        filmsInUsersQueue: state.userLists.filmsInUsersQueue,
+        onlyShowQueue: state.userLists.onlyShowQueue
     };
 };
 
@@ -86,7 +110,7 @@ const mapDispatchToProps = dispatch => {
         onMountFetchFilms: () => dispatch(actions.fetchFilms()),
         onMountFetchFilmsInUsersQueue: (token, userId) => dispatch(actions.fetchUsersQueue(token, userId)),
         dispatchAddToUserQueue: (addToQueueData, token) => dispatch(actions.addToUserQueue(addToQueueData, token)),
-        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId)),
+        dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId))
 
     }
 }

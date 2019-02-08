@@ -17,7 +17,7 @@ function CustomSearchInput(props) {
 
   return (
     <TextField
-      style={{padding: 24}}
+      style={{marginLeft: 15}}
       id="searchInput"
       placeholder="Filtrar films"
       className={classes.root}

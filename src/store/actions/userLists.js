@@ -109,4 +109,10 @@ export const removeFromUserQueue = ( removeFromQueueId, film, token, userId ) =>
             } );
     };
 };
+
+export const toggleOnlyShowQueue = () => {
+    return {
+        type: actionTypes.TOGGLE_ONLY_SHOW_QUEUE
+    };
+}
  

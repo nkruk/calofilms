@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton';
 import AddToQueue from '@material-ui/icons/AddToQueue';
 import RemoveFromQueue from '@material-ui/icons/RemoveFromQueue';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -38,19 +39,21 @@ const Film = (props) => {
                         </Button> 
                         {
                             props.isAuth && !props.isInUsersQueue ?
-                            (
+                            (   <Tooltip title="Añadir a tu lista personal">
                                 <IconButton aria-label="Añadir a favoritos" onClick={props.addToQueue}>
                                     <AddToQueue />
                                 </IconButton>
+                                </Tooltip>
                             ) : null
                         }
 
 {
                             props.isAuth && props.isInUsersQueue ?
-                            (
+                            (   <Tooltip title="Quitar de tu lista personal">
                                 <IconButton aria-label="Añadir a favoritos" onClick={props.removeFromQueue}>
                                     <RemoveFromQueue />
                                 </IconButton>
+                                </Tooltip>
                             ) : null
                         }
                         

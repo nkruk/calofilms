@@ -4,6 +4,7 @@ import { updateObject } from '../../shared/utility';
 const initialState = {
     filmsInUsersQueue: [],
     loading: false,
+    onlyShowQueue: false
 };
 
 const addToUserQueueStart = ( state, action ) => {
@@ -64,6 +65,14 @@ const removeFromUserQueueSuccess = (state, action) => {
     } );
 };
 
+const toggleOnlyShowQueue = (state, action) => {
+    const newState = {...state};
+            newState.onlyShowQueue = !newState.onlyShowQueue
+    return updateObject( state, {
+        onlyShowQueue: newState.onlyShowQueue
+    })
+}
+
 
 const reducer = ( state = initialState, action ) => {
     switch ( action.type ) {
@@ -76,6 +85,7 @@ const reducer = ( state = initialState, action ) => {
         case actionTypes.REMOVE_FROM_USER_QUEUE_START: return removeFromUserQueueStart( state, action );
         case actionTypes.REMOVE_FROM_USER_QUEUE_SUCCESS: return removeFromUserQueueSuccess( state, action )
         case actionTypes.REMOVE_FROM_USER_QUEUE_FAIL: return removeFromUserQueueFail( state, action );
+        case actionTypes.TOGGLE_ONLY_SHOW_QUEUE: return toggleOnlyShowQueue( state, action);
         default: return state;
     }
 };
