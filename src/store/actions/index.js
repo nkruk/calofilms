@@ -8,3 +8,8 @@ export {
     setAuthRedirectPath,
     authCheckState
 } from './auth';
+export {
+    addToUserQueue,
+    fetchUsersQueue,
+    removeFromUserQueue
+} from './userLists';

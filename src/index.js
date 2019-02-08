@@ -8,14 +8,16 @@ import { BrowserRouter } from 'react-router-dom';
 
 import './index.module.css';
 import App from './App';
-import authReducer from './store/reducers/authMyGod';
+import authReducer from './store/reducers/auth.js';
 import filmsReducer from './store/reducers/films';
+import userListsReducer from './store/reducers/userLists'
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     films: filmsReducer,
-    auth: authReducer
+    auth: authReducer,
+    userLists: userListsReducer
 });
 
 const store = createStore(rootReducer, composeEnhancers(

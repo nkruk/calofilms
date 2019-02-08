@@ -25,7 +25,7 @@ export const fetchFilmsStart = () => {
 export const fetchFilms = () => {
     return dispatch => {
         dispatch(fetchFilmsStart());
-            axios.get( 'https://calofilms.firebaseio.com/.json' )
+            axios.get( 'https://calofilms.firebaseio.com/films.json' )
                 .then( response => {
                     const fetchedFilms = Object.values(response.data);
                     dispatch(fetchFilmsSuccess(fetchedFilms));

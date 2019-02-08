@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton';
 import AddToQueue from '@material-ui/icons/AddToQueue';
+import RemoveFromQueue from '@material-ui/icons/RemoveFromQueue';
+
 
 
 const Film = (props) => {
@@ -34,9 +36,24 @@ const Film = (props) => {
                         <Button size="small" color="primary" href={props.film.trailer} target="_blank">
                            Ver trailer
                         </Button> 
-                        <IconButton aria-label="Añadir a favoritos">
-                            <AddToQueue />
-                        </IconButton>
+                        {
+                            props.isAuth && !props.isInUsersQueue ?
+                            (
+                                <IconButton aria-label="Añadir a favoritos" onClick={props.addToQueue}>
+                                    <AddToQueue />
+                                </IconButton>
+                            ) : null
+                        }
+
+{
+                            props.isAuth && props.isInUsersQueue ?
+                            (
+                                <IconButton aria-label="Añadir a favoritos" onClick={props.addToQueue}>
+                                    <RemoveFromQueue />
+                                </IconButton>
+                            ) : null
+                        }
+                        
                     </CardActions>
                 </Card>
           ): null }  
