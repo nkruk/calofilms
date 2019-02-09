@@ -6,7 +6,7 @@ Firebase as backend.
 
 This site features films recommended by Santiago Calori (@sancalori).  
 
-## Planned Features
+## Planned Features / Upcoming Fixes
 * ~~Async films filter by term (onChange event).~~ (Implemented)
 * ~~Authentication.~~ (Implemented)
 * ~~Wishlist functionality: When logged in toggle "add_to_queue" and "remove_from_queue" buttons. Add queued films to user list.~~ (Implemented)
