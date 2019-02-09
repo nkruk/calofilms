@@ -13,6 +13,7 @@ This site features films recommended by Santiago Calori (@sancalori).
 * ~~Add icon in toolbar to display only films in users' queue.~~ (Implemented)
 * ~~Remove search bar from auth route.~~ (Implemented)
 * Add a "No film in your personal list yet when filmsInQueue.length === 0"
+* Jump to top when clicking in queue list icon.
 * Redo signup/login form with material-ui components.
 * Move icons on card to the right of the flex item.
 * Add footer with github link and credits.
