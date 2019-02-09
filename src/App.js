@@ -12,10 +12,6 @@ import * as actions from './store/actions/index';
 
 class App extends Component {
 
-  state = {
-    freshReload: false
-  }
-
   componentDidMount() {
     this.props.onMountAutoSignup();
   }
