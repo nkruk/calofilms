@@ -15,7 +15,7 @@ This site features films recommended by Santiago Calori (@sancalori).
 * ~~Fix bug where logging out from queue does not redirect to home page with all films (it stays on the user's queue list.)~~
 * ~~Add a "No film in your personal list yet" alert when filmsInQueue.length === 0" and toggles off showOnlyUsers Queue if all films deleted of users queue from within users queue~~
 * ~~Jump to top when clicking in queue list icon.~~
-* Jump to top when going back from queue.
+* ~~Jump to top when going back from empty queue.~~
 * Redo signup/login form with material-ui components.
 * Move icons on card to the right of the flex item.
 * Add footer with github link and credits.
