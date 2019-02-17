@@ -9,6 +9,7 @@ import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
 
+// cambiar el switch a dos botones: registro y login
 
 class Auth extends Component {
     state = {
