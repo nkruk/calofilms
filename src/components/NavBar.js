@@ -16,14 +16,14 @@ import Tooltip from '@material-ui/core/Tooltip';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountBox from '@material-ui/icons/AccountBox';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
+import Alert from '../components/UI/Alert/Alert';
 //import Search from '@material-ui/icons/Search';
-
-
 
 class NavBar extends Component {
 
     state = {
-        searchString: ''
+        searchString: '',
+        alertNoFilmsOpen: false
     }
 
     filteredTitles(searchString) {
@@ -65,12 +65,21 @@ class NavBar extends Component {
     }
 
     showOnlyQueueClickHandler = () => {
-        this.props.toggleOnlyShowQueue();
+        if (this.props.filmsInUsersQueue.length === 0) {
+            this.setState({alertNoFilmsOpen : true});
+        } else {
+            this.props.toggleOnlyShowQueue();
+        } 
     }
+
+    alertClickHandler = () => {
+        this.setState({alertNoFilmsOpen : !this.state.alertNoFilmsOpen});
+    }
+
+    
 
 
     render() {
-
 
         const closeSession = () => {
             return (<NavLink to="/logout">
@@ -108,7 +117,7 @@ class NavBar extends Component {
             </>)
         } else if (this.props.isAuthenticated 
                     && this.props.onlyShowQueue
-                     ){
+                    ){
             return (
                 <>
                 <Grid item>
@@ -134,6 +143,7 @@ class NavBar extends Component {
                         justify="space-between"
                         alignItems="center">
                     <Grid item>
+                    
                 
                     {this.props.displayed && !this.props.onlyShowQueue && !this.props.inAuth ? 
                     <>
@@ -157,6 +167,7 @@ class NavBar extends Component {
                     </Grid>
                         {menuIcons()}
                         </Grid>
+                        { this.state.alertNoFilmsOpen ? <Alert closeAlert={this.alertClickHandler}/> : null}
                     </Toolbar>
                 </AppBar>
                 
@@ -171,7 +182,8 @@ const mapStateToProps = state => {
         displayed: state.films.displayed,
         isAuthenticated: state.auth.token !== null,
         onlyShowQueue: state.userLists.onlyShowQueue,
-        inAuth: state.auth.inAuth
+        inAuth: state.auth.inAuth,
+        filmsInUsersQueue: state.userLists.filmsInUsersQueue
     };
   };
 

@@ -37,6 +37,10 @@ class FilmList extends Component {
 
     render() {
 
+        if (this.props.onlyShowQueue === true && this.props.filmsInUsersQueue.length === 0) {
+            this.props.toggleOnlyShowQueue();
+        }
+
         let displayedFilms;
         if (!this.props.onlyShowQueue) {
         displayedFilms = this.props.filteredFilms        
@@ -114,7 +118,8 @@ const mapDispatchToProps = dispatch => {
         onMountFetchFilmsInUsersQueue: (token, userId) => dispatch(actions.fetchUsersQueue(token, userId)),
         dispatchAddToUserQueue: (addToQueueData, token) => dispatch(actions.addToUserQueue(addToQueueData, token)),
         dispatchRemoveFromUserQueue: (removeFromQueueData, film, token, userId) => dispatch(actions.removeFromUserQueue(removeFromQueueData, film, token, userId)),
-        toggleInAuth: (boolean) => dispatch(actions.toggleInAuth(boolean))
+        toggleInAuth: (boolean) => dispatch(actions.toggleInAuth(boolean)),
+        toggleOnlyShowQueue: () => dispatch(actions.toggleOnlyShowQueue())
 
     }
 }
