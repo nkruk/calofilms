@@ -35,10 +35,6 @@ class FilmList extends Component {
 
     render() {
 
-        if (this.props.onlyShowQueue === true) {
-            window.scrollTo(0, 0);
-        }
-
         if (this.props.onlyShowQueue === true && this.props.filmsInUsersQueue.length === 0) {
             this.props.toggleOnlyShowQueue();
         }

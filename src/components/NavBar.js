@@ -68,6 +68,7 @@ class NavBar extends Component {
         if (this.props.filmsInUsersQueue.length === 0) {
             this.setState({alertNoFilmsOpen : true});
         } else {
+            window.scrollTo(0, 0);
             this.props.toggleOnlyShowQueue();
         } 
     }
