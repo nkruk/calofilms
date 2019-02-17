@@ -16,9 +16,7 @@ class FilmList extends Component {
             if (this.props.isAuthenticated) {
                 this.props.onMountFetchFilmsInUsersQueue(this.props.token, this.props.userId);
                 }
-        }, 0);
-        
-        
+        }, 0);   
     }
 
     addToQueueHandler(event, filmTitle) {
@@ -36,6 +34,10 @@ class FilmList extends Component {
 
 
     render() {
+
+        if (this.props.onlyShowQueue === true) {
+            window.scrollTo(0, 0);
+        }
 
         if (this.props.onlyShowQueue === true && this.props.filmsInUsersQueue.length === 0) {
             this.props.toggleOnlyShowQueue();
