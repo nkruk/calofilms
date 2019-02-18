@@ -19,6 +19,7 @@ This site features films recommended by Santiago Calori (@sancalori).
 * ~~Redo signup/login form with material-ui components.~~
 * Move icons on card to the right of the flex item.
 * Add footer with github link and credits.
+* Add filter functionality to display films by year of release asc o desc and running time.
 * Add a withErrorHandler HOC to catch firebase 4xxs.
 * Add proper modal with backdrop to display error messages.
 * Add autosuggestion in search bar with added hidden field with keywords.
