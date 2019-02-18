@@ -148,11 +148,6 @@ class NavBar extends Component {
                     {this.props.displayed && !this.props.onlyShowQueue && !this.props.inAuth ? 
                     <>
                     
-                    {/* <Tooltip title="Filtrar la filmoteca entera por palabras claves: director, año de lanzamiento, país y palabras incluidas en el comentario.">
-                        <IconButton aria-label="Buscar" style={{margin: '0 auto'}}>
-                            <Search style={{color:'white'}}/>
-                        </IconButton>
-                    </Tooltip> */}
                     <CustomSearchInput search={this.onSearchInputChange} /> 
                     </>
                     : null}
