@@ -73,6 +73,12 @@ class NavBar extends Component {
         } 
     }
     
+    alertClickHandler = () => {
+        this.setState( prevState => {
+            return { alertNoFilmsOpen: !prevState.alertNoFilmsOpen };
+        } );
+    }
+
     render() {
 
         const closeSession = () => {
