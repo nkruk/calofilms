@@ -3,9 +3,11 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 
 import Input from '../../components/UI/Input/Input';
-import Button from '../../components/UI/Button/Button';
 import ButtonMUI from '../../components/UI/Button/ButtonMUI';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import Typography from '@material-ui/core/Typography';
+import Alert from '../../components/UI/Alert/Alert';
+
 import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
@@ -43,7 +45,8 @@ class Auth extends Component {
                 touched: false
             }
         },
-        isSignup: true
+        isSignup: true,
+        alertAuthError: false
     }
 
      componentDidMount () {
@@ -74,6 +77,12 @@ class Auth extends Component {
             return { isSignup: !prevState.isSignup };
         } );
      }
+
+    alertClickHandler = () => {
+        this.setState( prevState => {
+            return { alertAuthError: !prevState.alertAuthError };
+        } );
+    }
 
     render () {
 
@@ -112,9 +121,19 @@ class Auth extends Component {
         let errorMessage = null;
 
         if ( this.props.error ) {
-            errorMessage = (
-                <p>{this.props.error.message}</p>
-            );
+            switch (this.props.error.message) {
+                case 'EMAIL_EXISTS':
+                  errorMessage = "Este correo electrónico ya ha sido registrado. Por favor pulsa sobre el botón 'Cambiar a Inicio de Sesión' e inténtalo nuevamente";
+                  break; 
+                case 'EMAIL_NOT_FOUND':
+                  errorMessage = "No hay ningún usuario registrado con esa dirección de correo electrónico. Por favor pulsa sobre el botón 'Cambiar a Registro' e inténtalo nuevamente";
+                  break; 
+                case 'INVALID_PASSWORD':
+                  errorMessage = "El usuario está correctamente registrado pero la contraseña es incorrecta.";
+                  break; 
+                default: 
+                  errorMessage = `${this.props.error.message}`;
+              }
         }
 
         let authRedirect = null;
@@ -124,17 +143,22 @@ class Auth extends Component {
 
         return (
             <div className={classes.Auth} id="main">
+            {this.state.isSignup ? <Typography variant="h5" gutterBottom>Registro de usuario</Typography> : <Typography variant="h5" gutterBottom>Inicio de sesión</Typography>}
                 {authRedirect}
-                {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}
                     <ButtonMUI variant="contained" disabled={submitDisabled}>
                     ENVIAR</ButtonMUI>
                 </form>
-                <Button
+                <ButtonMUI
+                    variant="contained"
                     clicked={this.switchAuthModeHandler}
-                    btnType="Danger">CAMBIAR A {this.state.isSignup ? 'INICIO DE SESIÓN' : 'REGISTRO'}</Button>
+                    btnType="Danger">CAMBIAR A <br></br>{this.state.isSignup ? 'INICIO DE SESIÓN' : 'REGISTRO'}</ButtonMUI>
+                { this.props.error ? 
+                <Alert title={"Hemos encontrado el siguiente problema:"}
+                       messageBody={errorMessage}/> : null}
             </div>
+            
         );
     }
 }

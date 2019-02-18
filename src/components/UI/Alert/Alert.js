@@ -21,10 +21,10 @@ function AlertDialog(props) {
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle id="alert-dialog-title">{"Aún no tienes películas en tu lista"}</DialogTitle>
+        <DialogTitle id="alert-dialog-title">{props.title}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Comienza a añadir películas para poder verlas en tu lista personalizada.
+            {props.messageBody}
           </DialogContentText>
         </DialogContent>
         <DialogActions>

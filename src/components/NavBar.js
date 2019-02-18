@@ -72,12 +72,6 @@ class NavBar extends Component {
             this.props.toggleOnlyShowQueue();
         } 
     }
-
-    alertClickHandler = () => {
-        this.setState( prevState => {
-            return { alertNoFilmsOpen: !prevState.alertNoFilmsOpen };
-        } );
-    }
     
     render() {
 
@@ -167,7 +161,10 @@ class NavBar extends Component {
                     </Grid>
                         {menuIcons()}
                         </Grid>
-                        { this.state.alertNoFilmsOpen ? <Alert closeAlert={this.alertClickHandler}/> : null}
+                        { this.state.alertNoFilmsOpen ? 
+                        <Alert closeAlert={this.alertClickHandler}
+                               title={"Aún no tienes películas en tu lista"}
+                               messageBody={'Comienza a añadir películas para poder verlas en tu lista personalizada.'}/> : null}
                     </Toolbar>
                 </AppBar>
                 
