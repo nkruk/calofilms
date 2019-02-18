@@ -1,6 +1,7 @@
 import React from 'react';
 
 import classes from './Input.module.css';
+import { TextField } from '@material-ui/core';
 
 const input = ( props ) => {
     let inputElement = null;
@@ -12,25 +13,32 @@ const input = ( props ) => {
 
     switch ( props.elementType ) {
         case ( 'input' ):
-            inputElement = <input
+            inputElement = <TextField
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed} />;
+                placeholder={props.name}
+                onChange={props.changed} 
+                name={props.name}
+                />;
             break;
         case ( 'textarea' ):
             inputElement = <textarea
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed} />;
+                onChange={props.changed}
+                name={props.name}
+                />;
             break;
         case ( 'select' ):
             inputElement = (
                 <select
                     className={inputClasses.join(' ')}
                     value={props.value}
-                    onChange={props.changed}>
+                    onChange={props.changed}
+                    name={props.name}
+                    >
                     {props.elementConfig.options.map(option => (
                         <option key={option.value} value={option.value}>
                             {option.displayValue}
@@ -40,11 +48,13 @@ const input = ( props ) => {
             );
             break;
         default:
-            inputElement = <input
+            inputElement = <TextField
                 className={inputClasses.join(' ')}
                 {...props.elementConfig}
                 value={props.value}
-                onChange={props.changed} />;
+                onChange={props.changed}
+                name={props.name}
+                />;
     }
 
     return (

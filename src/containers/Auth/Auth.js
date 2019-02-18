@@ -4,17 +4,16 @@ import { Redirect } from 'react-router-dom';
 
 import Input from '../../components/UI/Input/Input';
 import Button from '../../components/UI/Button/Button';
+import ButtonMUI from '../../components/UI/Button/ButtonMUI';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import classes from './Auth.module.css';
 import * as actions from '../../store/actions/index';
 import { updateObject, checkValidity } from '../../shared/utility';
-
-// cambiar el switch a dos botones: registro y login
-
 class Auth extends Component {
     state = {
         controls: {
             email: {
+                ref: 'email',
                 elementType: 'input',
                 elementConfig: {
                     type: 'email',
@@ -29,6 +28,7 @@ class Auth extends Component {
                 touched: false
             },
             password: {
+                ref: 'password',
                 elementType: 'input',
                 elementConfig: {
                     type: 'password',
@@ -50,9 +50,9 @@ class Auth extends Component {
         if ( this.props.authRedirectPath !== '/' ) {
             this.props.onSetAuthRedirectPath();
         }
-        this.props.toggleInAuth(true);
     } 
 
+    
     inputChangedHandler = ( event, controlName ) => {
         const updatedControls = updateObject( this.state.controls, {
             [controlName]: updateObject( this.state.controls[controlName], {
@@ -76,6 +76,11 @@ class Auth extends Component {
      }
 
     render () {
+
+        const submitDisabled = this.state.controls.email.valid === true
+                            && this.state.controls.password.valid === true
+                            ? false : true;
+
         const formElementsArray = [];
         for ( let key in this.state.controls ) {
             formElementsArray.push( {
@@ -93,8 +98,12 @@ class Auth extends Component {
                 invalid={!formElement.config.valid}
                 shouldValidate={formElement.config.validation}
                 touched={formElement.config.touched}
-                changed={( event ) => this.inputChangedHandler( event, formElement.id )} />
+                name={formElement.id}
+                changed={( event ) => {
+                    this.inputChangedHandler( event, formElement.id )}
+                } />
         ) );
+
 
         if ( this.props.loading ) {
             form = <Spinner />
@@ -114,12 +123,13 @@ class Auth extends Component {
         }
 
         return (
-            <div className={classes.Auth}>
+            <div className={classes.Auth} id="main">
                 {authRedirect}
                 {errorMessage}
                 <form onSubmit={this.submitHandler}>
                     {form}
-                    <Button btnType="Success">ENVIAR</Button>
+                    <ButtonMUI variant="contained" disabled={submitDisabled}>
+                    ENVIAR</ButtonMUI>
                 </form>
                 <Button
                     clicked={this.switchAuthModeHandler}
@@ -146,4 +156,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect( mapStateToProps, mapDispatchToProps )( Auth );
+export default connect( mapStateToProps, mapDispatchToProps )(Auth);
