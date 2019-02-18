@@ -9,6 +9,7 @@ import IconButton from '@material-ui/core/IconButton';
 import AddToQueue from '@material-ui/icons/AddToQueue';
 import RemoveFromQueue from '@material-ui/icons/RemoveFromQueue';
 import Tooltip from '@material-ui/core/Tooltip';
+import Grid from '@material-ui/core/Grid';
 
 
 
@@ -34,16 +35,24 @@ const Film = (props) => {
                     
                     </CardContent>
                     <CardActions>
+                    <Grid container 
+                          alignItems="center"
+                          justify="space-between">
+                    <Grid item>
                         <Button size="small" color="primary" href={props.film.trailer} target="_blank">
                            Ver trailer
                         </Button> 
+                        </Grid>
                         {
                             props.isAuth && !props.isInUsersQueue ?
-                            (   <Tooltip title="Añadir a tu lista personal">
+                            (   
+                                <Grid item>
+                                <Tooltip title="Añadir a tu lista personal">
                                 <IconButton aria-label="Añadir a favoritos" onClick={props.addToQueue}>
                                     <AddToQueue />
                                 </IconButton>
                                 </Tooltip>
+                                </Grid>
                             ) : null
                         }
 
@@ -56,7 +65,7 @@ const Film = (props) => {
                                 </Tooltip>
                             ) : null
                         }
-                        
+                        </Grid>
                     </CardActions>
                 </Card>
           ): null }  

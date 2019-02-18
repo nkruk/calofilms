@@ -7,17 +7,7 @@ Firebase as backend.
 This site features films recommended by Santiago Calori (@sancalori).  
 
 ## Planned Features / Upcoming Fixes
-* ~~Async films filter by term (onChange event).~~
-* ~~Authentication.~~ 
-* ~~Wishlist functionality: When logged in toggle "add_to_queue" and "remove_from_queue" buttons. Add queued films to user list.~~ 
-* ~~Add icon in toolbar to display only films in users' queue.~~ 
-* ~~Remove search bar from auth route.~~ 
-* ~~Fix bug where logging out from queue does not redirect to home page with all films (it stays on the user's queue list.)~~
-* ~~Add a "No film in your personal list yet" alert when filmsInQueue.length === 0" and toggles off showOnlyUsers Queue if all films deleted of users queue from within users queue~~
-* ~~Jump to top when clicking in queue list icon.~~
-* ~~Jump to top when going back from empty queue.~~
-* ~~Redo signup/login form with material-ui components.~~
-* Move icons on card to the right of the flex item.
+* Add magnifying glass icon to search.
 * Add footer with github link and credits.
 * Add filter functionality to display films by year of release asc o desc and running time.
 * Add a withErrorHandler HOC to catch firebase 4xxs.
