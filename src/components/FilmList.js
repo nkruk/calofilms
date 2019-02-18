@@ -50,8 +50,8 @@ class FilmList extends Component {
                 isAuth={this.props.isAuthenticated} 
                 // isInUsersQueue={titlesQueue.includes(currentFilm.title)} 
                 isInUsersQueue={this.props.filmsInUsersQueue
-                                        .filter((element) => element.film === currentFilm.title)
-                                        .length > 0 ? true : false} 
+                                        .find((element) => element.film === currentFilm.title)
+                                        ? true : false} 
                 addToQueue={(event) => this.addToQueueHandler (event, currentFilm.title)}
                 removeFromQueue={(event) => this.removeFromQueueHandler (event, currentFilm.title)} />
             </Grid>
