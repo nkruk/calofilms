@@ -7,13 +7,11 @@ Firebase as backend.
 This site features films recommended by Santiago Calori (@sancalori).  
 
 ## Planned Features / Upcoming Fixes
-* Add a dialog alert to Auth error messages.
 * Add filter functionality to display films by year of release asc o desc and running time.
-* Add footer with github link and credits.
 * Add share functionality.
 * Add a favorites (outline heart) icon, and when clicked: a filled heart icon. Do a similar second list with favorites.
+* Add footer with github link and credits.
 * Add a withErrorHandler HOC to catch firebase 4xxs.
 * Add proper modal with backdrop to display error messages.
 * Add autosuggestion in search bar with added hidden field with keywords.
 * Add layout with sidedrawer and hamburger icon.
-* Add running time and year filters.
