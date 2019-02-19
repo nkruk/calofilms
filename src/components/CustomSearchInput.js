@@ -5,6 +5,8 @@ import TextField from "@material-ui/core/TextField";
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
 import Tooltip from '@material-ui/core/Tooltip';
+import FilterList from '@material-ui/icons/FilterList';
+import IconButton from '@material-ui/core/IconButton';
 
 
 const styles = {
@@ -26,6 +28,13 @@ function CustomSearchInput(props) {
         justify="flex-start"
         alignItems="center"
       >
+      <Grid item>
+      <Tooltip title="Ordenar o filtrar películas">
+                                <IconButton aria-label="Ordenar o filtrar películas">
+                                    <FilterList style={{color:'white'}}/>
+                                </IconButton>
+                            </Tooltip>
+      </Grid>
         <Grid item>
           <Tooltip title="Filtrar películas por género, país, título, año de lanzamiento, director@, palabras incluidas en el texto del comentario">
             <SearchIcon/>

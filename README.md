@@ -4,6 +4,8 @@ Small React.js portfolio project.
 Libraries used so far: react-material-ui (core and icons), axios, redux, redux-thunk, react-router-dom.  
 Firebase as backend.
 
+[![StackShare](https://img.shields.io/badge/tech-stack-0690fa.svg?style=flat)](https://stackshare.io/nicolasgkruk/calofilms)
+
 This site features films recommended by Santiago Calori (@sancalori).  
 
 ## Planned Features / Upcoming Fixes
