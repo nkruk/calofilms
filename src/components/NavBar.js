@@ -3,20 +3,21 @@ import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
 
-import * as actions from '../../../store/actions/index';
+import * as actions from '../store/actions/index';
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
 import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden';
-import CustomSearchInput from '../../CustomSearchInput'
+import CustomSearchInput from './CustomSearchInput'
 import PlaylistAdd from '@material-ui/icons/PlaylistAdd';
 import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
 import ExitToApp from '@material-ui/icons/ExitToApp';
 import AccountBox from '@material-ui/icons/AccountBox';
 import PlaylistAddCheck from '@material-ui/icons/PlaylistAddCheck';
-import Alert from '../../UI/Alert/Alert';
+import Alert from '../components/UI/Alert/Alert';
+//import Search from '@material-ui/icons/Search';
 
 class NavBar extends Component {
 
